@@ -1,0 +1,478 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: reorgPDf\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-09 00:12+0900\n"
+"PO-Revision-Date: 2008-09-09 00:19+0900\n"
+"Last-Translator: IshiiEiju <lumidina@msn.com>\n"
+"Language-Team: IshiiEiju\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: main.cpp:72
+msgid "New"
+msgstr "新規作成"
+
+#: main.cpp:73
+msgid "Open"
+msgstr "開く"
+
+#: main.cpp:74
+msgid "Save"
+msgstr "保存"
+
+#: main.cpp:75
+msgid "Save as"
+msgstr "名前を付けて保存"
+
+#: main.cpp:77
+msgid "Exit"
+msgstr "終了"
+
+#: main.cpp:79
+#: main.cpp:641
+msgid "Cut"
+msgstr "切り取り"
+
+#: main.cpp:80
+#: main.cpp:642
+msgid "Copy"
+msgstr "コピー"
+
+#: main.cpp:81
+#: main.cpp:643
+msgid "Paste"
+msgstr "貼り付け"
+
+#: main.cpp:82
+#: main.cpp:644
+msgid "Delete"
+msgstr "削除"
+
+#: main.cpp:84
+#: main.cpp:646
+msgid "To left 90"
+msgstr "左へ90度"
+
+#: main.cpp:85
+#: main.cpp:647
+msgid "To right 90"
+msgstr "右へ90度"
+
+#: main.cpp:86
+#: main.cpp:648
+msgid "180 degrees"
+msgstr "180度"
+
+#: main.cpp:87
+msgid "Rotate"
+msgstr "回転"
+
+#: main.cpp:89
+msgid "On: Original, Off:New"
+msgstr "On: 元PDF, Off: 新規PDF"
+
+#: main.cpp:92
+msgid "all pages"
+msgstr "全てのページ"
+
+#: main.cpp:93
+msgid "Even number pages"
+msgstr "偶数ページ"
+
+#: main.cpp:94
+msgid "Odd number pages"
+msgstr "奇数ページ"
+
+#: main.cpp:95
+msgid "Specified number pages"
+msgstr "指定したページ"
+
+#: main.cpp:96
+msgid "Selection"
+msgstr "選択"
+
+#: main.cpp:98
+msgid "Last page"
+msgstr "最終ページ"
+
+#: main.cpp:99
+msgid "Specified page"
+msgstr "指定したページ"
+
+#: main.cpp:100
+msgid "Insert"
+msgstr "挿入"
+
+#: main.cpp:102
+#: setdlg.cpp:11
+msgid "Setting"
+msgstr "設定"
+
+#: main.cpp:104
+msgid "Help"
+msgstr "ヘルプ"
+
+#: main.cpp:105
+msgid "About"
+msgstr "このソフトについて"
+
+#: main.cpp:107
+msgid "&File(&F)"
+msgstr "ファイル(&F)"
+
+#: main.cpp:108
+msgid "&Edit(&E)"
+msgstr "編集(&E)"
+
+#: main.cpp:109
+msgid "&Tool(&T)"
+msgstr "ツール(&T)"
+
+#: main.cpp:110
+msgid "&Help(&H)"
+msgstr "ヘルプ(&H)"
+
+#: main.cpp:151
+#: main.cpp:181
+msgid "Heading"
+msgstr "項目"
+
+#: main.cpp:154
+#: main.cpp:184
+msgid "Value"
+msgstr "値"
+
+#: main.cpp:157
+#: main.cpp:187
+msgid "File name"
+msgstr "ファイル名"
+
+#: main.cpp:158
+#: main.cpp:188
+msgid "Total page"
+msgstr "ページ数"
+
+#: main.cpp:159
+#: main.cpp:189
+msgid "Title"
+msgstr "タイトル"
+
+#: main.cpp:160
+#: main.cpp:190
+msgid "Subtitle"
+msgstr "サブタイトル"
+
+#: main.cpp:161
+#: main.cpp:191
+msgid "Author"
+msgstr "作成者"
+
+#: main.cpp:162
+#: main.cpp:192
+msgid "Keyword"
+msgstr "キーワード"
+
+#: main.cpp:195
+msgid "Use infos of original document"
+msgstr "元PDFの情報を使用する"
+
+#: main.cpp:224
+msgid ""
+"It is possible necessary password. Please input password.\n"
+"If password is not necessary, input space."
+msgstr ""
+"パスワードが必要かもしれませんので入力してください。\n"
+"もし不要な場合は何も入力しないでください。"
+
+#: main.cpp:225
+msgid "This PDF could not open by access permission or other"
+msgstr "ｱｸｾｽ権限がないか、他の理由でこのPDFを開くことができませんでした"
+
+#: main.cpp:227
+msgid "Please choose a PDF file as source."
+msgstr "元となるPDFファイルを選択してください。"
+
+#: main.cpp:227
+#: main.cpp:283
+msgid "PDF file (*.pdf)|*.pdf;*.PDF;"
+msgstr "PDF ファイル (*.pdf)|*.pdf;*.PDF;"
+
+#: main.cpp:264
+msgid "The original file takes a password. You can not overwrite save."
+msgstr "元のファイルはパスワードがかかっています。上書き保存できません"
+
+#: main.cpp:283
+msgid "Please input file name for save"
+msgstr "保存するファイル名を入力してください。"
+
+#: main.cpp:356
+msgid "Do you really remove this page?"
+msgstr "このページを本当に削除しますか？"
+
+#: main.cpp:393
+msgid "No page choose!"
+msgstr "ページが選択されていません！"
+
+#: main.cpp:473
+msgid ""
+"Please choose page number.\n"
+"Exsample: 1,3,5 ..."
+msgstr ""
+"ページ番号を入力してください。\n"
+"例：1,3,5 ..."
+
+#: main.cpp:513
+msgid "Please choose page number as target"
+msgstr "対象となるページ番号を選択してください"
+
+#: main.cpp:540
+msgid "This program is an editor to reorganize a PDF file."
+msgstr "このﾌﾟﾛｸﾞﾗﾑはPDFを再編成するエディターです"
+
+#: main.cpp:625
+msgid "Get thumbnail"
+msgstr "サムネイル取得"
+
+#: main.cpp:630
+msgid "Insert to new document"
+msgstr "新規PDFに挿入"
+
+#: main.cpp:715
+msgid "You can not edit File name and Total page."
+msgstr "ファイル名と総ページ数は編集できません"
+
+#: main.cpp:812
+msgid "There is not a page in a new PDF file."
+msgstr "新規PDFにはページがありません"
+
+#: main.cpp:951
+msgid "Save finished."
+msgstr "保存が完了しました。"
+
+#: main.cpp:955
+msgid "Because an original file overwrites, and it was saved, I read it again and do it."
+msgstr "元のファイルが上書きされましたので、再読み込みを行います"
+
+#: main.cpp:999
+msgid "Now Loading..."
+msgstr "読み込んでいます..."
+
+#: main.cpp:1065
+msgid "Finished to enumerate thumbnails."
+msgstr "サムネイルの表示が完了しました。"
+
+#: main.cpp:1099
+#: main.cpp:1133
+#: main.cpp:1139
+#, c-format
+msgid "%d pages"
+msgstr "%d ページ"
+
+#: setdlg.cpp:16
+msgid "File"
+msgstr "ファイル"
+
+#: setdlg.cpp:17
+msgid "View"
+msgstr "表示"
+
+#: setdlg.cpp:20
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: setdlg.cpp:41
+msgid "Left-top(default)"
+msgstr "左上（標準）"
+
+#: setdlg.cpp:41
+msgid "Left-top(with margin)"
+msgstr "左上（余白あり）"
+
+#: setdlg.cpp:41
+msgid "Center"
+msgstr "中央"
+
+#: setdlg.cpp:48
+msgid "Default paper type:"
+msgstr "標準の用紙の種類"
+
+#: setdlg.cpp:51
+msgid "Specify a kind of default paper."
+msgstr "デフォルトの用紙の種類を指定します"
+
+#: setdlg.cpp:53
+msgid "Positionning of page"
+msgstr "ページの配置設定"
+
+#: setdlg.cpp:55
+msgid "Position:"
+msgstr "位置"
+
+#: setdlg.cpp:58
+msgid "Specify a placement position to the paper of the document."
+msgstr "文書の用紙の配置位置を指定します"
+
+#: setdlg.cpp:62
+msgid "Margin"
+msgstr "余白"
+
+#: setdlg.cpp:64
+msgid "Left:"
+msgstr "左"
+
+#: setdlg.cpp:66
+msgid "Specify number of left margin"
+msgstr "左マージンの数を指定します"
+
+#: setdlg.cpp:67
+msgid "Top:"
+msgstr "上"
+
+#: setdlg.cpp:69
+msgid "Specify number of top margin"
+msgstr "トップマージンの数を指定します"
+
+#: setdlg.cpp:74
+msgid "Use frame around page"
+msgstr "枠をつける"
+
+#: setdlg.cpp:75
+msgid "Surround the document with the black frames, if a document does not reach size of the paper"
+msgstr "文書が用紙の大きさに満たない場合、文書を黒枠で囲みます"
+
+#: setdlg.cpp:76
+msgid "Fit in paper"
+msgstr "用紙に合わせる"
+
+#: setdlg.cpp:77
+msgid "Match a document with size of the paper, if a document does not reach size of the paper"
+msgstr "文書が用紙の大きさに満たない場合、文書を用紙の大きさに合わせます"
+
+#: setdlg.cpp:78
+msgid "Fit with extraction"
+msgstr "伸縮もする"
+
+#: setdlg.cpp:79
+msgid "Change the ratio of the length and breadth and match a document with size of the paper."
+msgstr "文書を用紙の大きさに合わせる際に縦横の比率も変えます"
+
+#: setdlg.cpp:86
+msgid "Do backup"
+msgstr "バックアップする"
+
+#: setdlg.cpp:87
+msgid "Back up the file, if a file path is the same as an original file."
+msgstr "元のファイルとファイルパスが同じ場合バックアップします"
+
+#: setdlg.cpp:88
+msgid "Overwrite original file"
+msgstr "元ファイルを上書きする"
+
+#: setdlg.cpp:89
+msgid "Overwrite with an original file, if you never store a new file."
+msgstr "新規ファイルが一度も保存されていない場合、元のファイルを上書きします"
+
+#: setdlg.cpp:108
+msgid "Auto"
+msgstr "自動"
+
+#: setdlg.cpp:108
+msgid "Portrait"
+msgstr "縦置き"
+
+#: setdlg.cpp:108
+msgid "Landscape"
+msgstr "横置き"
+
+#: setdlg.cpp:111
+msgid "Small"
+msgstr "小"
+
+#: setdlg.cpp:111
+msgid "Normal"
+msgstr "中"
+
+#: setdlg.cpp:111
+msgid "Big"
+msgstr "大"
+
+#: setdlg.cpp:114
+msgid "Use real thumbnails"
+msgstr "サムネイルを使用する"
+
+#: setdlg.cpp:116
+msgid "Use the thumbnail of the real document"
+msgstr "実際の文書のサムネイルを使用します"
+
+#: setdlg.cpp:118
+msgid "Thumbnail size:"
+msgstr "サムネイルのサイズ"
+
+#: setdlg.cpp:121
+msgid "Specify the size of the thumbnail to display"
+msgstr "表示するサムネイルの大きさを指定します"
+
+#: setdlg.cpp:122
+msgid "(enable after reboot application)"
+msgstr "(アプリケーションの再起動後有効)"
+
+#: setdlg.cpp:124
+msgid "Default page orientation:"
+msgstr "標準のページの方向"
+
+#: setdlg.cpp:127
+msgid "Specify a direction of the paper of the default."
+msgstr "デフォルトの用紙の向きを指定します"
+
+#: setdlg.cpp:129
+msgid "Original document"
+msgstr "元PDF"
+
+#: setdlg.cpp:131
+#: setdlg.cpp:143
+msgid "Use collapse"
+msgstr "有効にする"
+
+#: setdlg.cpp:132
+#: setdlg.cpp:144
+msgid "Count:"
+msgstr "まとめる単位"
+
+#: setdlg.cpp:141
+msgid "New document"
+msgstr "新規PDF"
+
+#: setdlg.cpp:154
+msgid "Reload thumbnails after overwrite"
+msgstr "上書き保存後サムネイルを再読み込みする"
+
+#: setdlg.cpp:155
+msgid "Reload a file again after overwrite saving."
+msgstr "上書き保存後ファイルを再読み込みします"
+
+#~ msgid "Property"
+#~ msgstr "プロパティ"
+#~ msgid "Type"
+#~ msgstr "種類"
+#~ msgid "Page infomation:"
+#~ msgstr "ページ情報"
+#~ msgid "Input"
+#~ msgstr "入力"
+#~ msgid "Do backup on overwrite"
+#~ msgstr "上書き保存時バックアップする"
+#~ msgid "New PDF is no page."
+#~ msgstr "新規PDFにページがありません。"
+#~ msgid "Page"
+#~ msgstr "ページ"
+#~ msgid "Content"
+#~ msgstr "内容"
+#~ msgid "Rotation type:"
+#~ msgstr "回転の種類"
+
