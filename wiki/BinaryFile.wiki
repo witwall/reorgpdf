@@ -1,15 +1,10 @@
 #labels Downloads
-<Windows>
-1) XP
-reorgpdf-0.7-1.zip
-=>
-
-http://cid-80c55e9b203c084c.skydrive.live.com/self.aspx/Application/reorgpdf-0.7-1.zip
+=Executable file=
+==Windows==
+ * XP
+[http://cid-80c55e9b203c084c.skydrive.live.com/self.aspx/Application/reorgpdf-0.7-1.zip reorgpdf-0.7-1.zip]
 
 
-<Linux>
-1) ubuntu 8.04
-reorgpdf_0.7-1_i386.deb
-=>
-
-http://cid-80c55e9b203c084c.skydrive.live.com/self.aspx/Application/reorgpdf|_0.7-1|_i386.deb
+==Linux==
+ * ubuntu 8.04
+[http://cid-80c55e9b203c084c.skydrive.live.com/self.aspx/Application/reorgpdf|_0.7-1|_i386.deb reorgpdf_0.7-1_i386.deb]
