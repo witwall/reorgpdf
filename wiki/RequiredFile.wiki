@@ -1,0 +1,9 @@
+#labels Downloads
+=Required file=
+
+==Library file==
+_for Linux_
+
+[http://cid-80c55e9b203c084c.skydrive.live.com/self.aspx/Library/wxpdfdoc0|_0.8.0-1|_i386.deb wxpdfdoc0_0.8.0-1_i386.deb]
+
+[http://cid-80c55e9b203c084c.skydrive.live.com/self.aspx/Library/wxpdfdoc-dev|_0.8.0-1|_i386.deb wxpdfdoc-dev_0.8.0-1_i386.deb]
