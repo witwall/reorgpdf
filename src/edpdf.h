@@ -116,19 +116,27 @@ private:
 	wxImageList *OriImages;
 	wxTreeItemId OriDragItem;
 	wxTreeItemId NewDragItem;
+	//source and new pdf document 
+	db_pdfdoc srcdocDB;
 	db_pdfdoc newdocDB;
+	//for operate data
 	wxPdfDocument *pdf;
+	//page number of source pdf
 	int srcpdfnum;
+	//source and new pdf information
 	wxPdfInfo srcpdfinfo;
 	wxPdfInfo newpdfinfo;
+	//source pdf filename and password
 	wxString srcpdfname;
 	wxString srcpdfpass;
+	//thumbnail image size and resolution
 	int ImgSize;
 	int Resolution;
+	//clipboard data
 	wxArrayTreeItemIds clipbd;
 	db_page_array clipbd_db;
 	bool clipcut;
-	//wxPopplerConvPPM popp;
+	//check flag at overwriting source pdf
 	bool issecure;
 	
 	void setup_originalpage(wxSplitterWindow *parent);
@@ -144,6 +152,7 @@ private:
 	void GetPageNumber(const wxString &str, int *page, int *srcpage);
 	wxTreeItemId GetTreeItem(wxTreeCtrl *tree, int index);
 	void SetListInformation(const wxString &name, int num, wxPdfInfo &info);
+	void PrepareSourcePDF(const wxString &name, const wxString &pass = wxEmptyString);
 };
 
 #endif

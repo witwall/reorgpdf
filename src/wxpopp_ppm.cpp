@@ -1,5 +1,6 @@
 #include "wxpopp_ppm.h"
 #include <wx/filename.h>
+#include <wx/paper.h>
 
 
 wxPopplerConvPPM::wxPopplerConvPPM(void)
@@ -192,13 +193,49 @@ bool wxPopplerConvPPM::AssignFile(void)
 	if (goousr) delete goousr;
 	if (gooown) delete gooown;
 	isopen = true;
-	double w, h;
-	int rot;
 	return true;
 }
 void wxPopplerConvPPM::Close(void)
 {
 	Initialize();
 	if (doc->isOk()) delete doc;
+}
+int wxPopplerConvPPM::GetRotatedValue(int page)
+{
+	if (!isready) return -1;
+	if (page < 1) return -1;
+	return doc->getPageRotate(page);
+}
+double wxPopplerConvPPM::GetPageWidth(int page)
+{
+	if (!isready) return 0.0;
+	if (page < 1) return 0.0;
+	return doc->getPageMediaWidth(page);
+}
+double wxPopplerConvPPM::GetPageHeight(int page)
+{
+	if (!isready) return 0.0;
+	if (page < 1) return 0.0;
+	return doc->getPageMediaHeight(page);
+}
+//Get paper type of page
+wxPaperSize wxPopplerConvPPM::GetPagePaperSize(int page)
+{
+	if (!isready) return wxPAPER_NONE;
+	if (page < 1) return wxPAPER_NONE;
+	// Convert to wxPaperSize
+	wxSize ps;
+	double scalef = 254.0 / 72.0;
+	// Change size from point to real size (mm)
+	ps.SetWidth((int)(GetPageWidth(page) * scalef));
+	ps.SetHeight((int)(GetPageHeight(page) * scalef));
+	// Page format
+	wxPrintPaperDatabase* printPaperDatabase = new wxPrintPaperDatabase;
+	printPaperDatabase->CreateDatabase();
+	wxPrintPaperType* paperType = printPaperDatabase->FindPaperType(ps);
+	if (paperType == NULL) {
+		return wxPAPER_NONE;
+	}
+	return paperType->GetId();
 }
 

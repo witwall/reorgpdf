@@ -57,6 +57,14 @@ public:
 	int GetResolution(void) { return resolution; }
 	//Get last outputted file path
 	wxString GetLastOutputPath(void) { return lastpath; }
+	//Get rotated value of specified page
+	int GetRotatedValue(int page);
+	//Get width of specified page
+	double GetPageWidth(int page);
+	//Get height of specified page
+	double GetPageHeight(int page);
+	//Get paper type of page
+	wxPaperSize GetPagePaperSize(int page);
 	
 	//Do prepare for output
 	bool Prepare(void);

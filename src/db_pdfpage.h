@@ -2,6 +2,7 @@
 #define __DEF_PDFPAGE_H__
 
 #include <wx/wx.h>
+#include <wx/paper.h>
 
 typedef enum {
 	page_rt = 0,
@@ -17,6 +18,8 @@ public:
 		srcpage = 0;
 		isrotate = false;
 		rotangle = 0.0;
+		pwidth = 0.0;
+		pheight = 0.0;
 	}
 	db_pdfpage(int src, int p)
 	{
@@ -24,6 +27,8 @@ public:
 		srcpage = src;
 		isrotate = false;
 		rotangle = 0.0;
+		pwidth = 0.0;
+		pheight = 0.0;
 	}
 	~db_pdfpage(void) { };
 
@@ -35,6 +40,10 @@ public:
 	RotateType GetRotateType(void) { return rottype; }
 	int GetOrientation(void) { return orientation; }
 	wxString GetPageString(int i);
+	double GetPageWidth(void) { return pwidth; }
+	double GetPageHeight(void) { return pheight; }
+	wxPaperSize GetPaperSize(void) { return docpaper; }
+	bool IsDirectionRotate(void) { return isdirrotate; }
 	//setter
 	void SetPage(int p) { page = p; }
 	void SetSourcePage(int p) { srcpage = p; }
@@ -42,6 +51,10 @@ public:
 	void SetRotateAngle(double a) { rotangle = a; }
 	void SetRotateType(RotateType rt) { rottype = rt; }
 	void SetOrientation(int o);
+	void SetPageWidth(double w) { pwidth = w; }
+	void SetPageHeight(double h) { pheight = h; }
+	void SetPaperSize(wxPaperSize p) { docpaper = p; }
+	void SetDirectionRotate(bool flag) { isdirrotate = flag; }
 private:
 	int page;
 	int srcpage;
@@ -49,7 +62,10 @@ private:
 	double rotangle;
 	RotateType rottype;
 	int orientation;
-
+	double pwidth;
+	double pheight;
+	wxPaperSize docpaper; 
+	bool isdirrotate;
 };
 
 #endif
