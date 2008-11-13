@@ -6,7 +6,7 @@
 
 #define BINTITLE _T("reorgpdf")
 
-#define APPVER _T("0.7.0")
+#define APPVER _T("0.7.1")
 
 #define CREATOR _T("ISHII Eiju")
 

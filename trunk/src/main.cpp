@@ -243,20 +243,6 @@ void EDFrame::fileMenu_Open_clicked(wxCommandEvent &event)
 		ed_MenuBar->Enable(edpdf_fm_save,true);
 		ed_MenuBar->Enable(edpdf_fm_saveas,true);
 		SetListInformation(srcpdfname,srcpdfnum,srcpdfinfo);
-		/*ed_OriDocumentInfo->SetItem(0,1,wxFileName(srcpdfname).GetFullName());
-		ed_OriDocumentInfo->SetItem(1,1,StrF(_T("%d pages"),srcpdfnum));
-		ed_OriDocumentInfo->SetItem(2,1,srcpdfinfo.GetTitle());
-		ed_OriDocumentInfo->SetItem(3,1,srcpdfinfo.GetSubject());
-		ed_OriDocumentInfo->SetItem(4,1,srcpdfinfo.GetAuthor());
-		ed_OriDocumentInfo->SetItem(5,1,srcpdfinfo.GetKeywords());
-
-		ed_NewDocumentInfo->SetItem(1,1,StrF(_("%d pages"),0));
-		if (ed_NewDocMenu->IsChecked(edpdf_useinfo)) {
-			ed_NewDocumentInfo->SetItem(2,1,srcpdfinfo.GetTitle());
-			ed_NewDocumentInfo->SetItem(3,1,srcpdfinfo.GetSubject());
-			ed_NewDocumentInfo->SetItem(4,1,srcpdfinfo.GetAuthor());
-			ed_NewDocumentInfo->SetItem(5,1,srcpdfinfo.GetKeywords());
-		}*/
 	}
 }
 void EDFrame::fileMenu_Save_clicked(wxCommandEvent &event)
@@ -402,6 +388,8 @@ void EDFrame::editMenu_Rotate_clicked(wxCommandEvent &event)
 		label = ed_NewThumbnails->GetItemText(items.Item(i));
 		wxImage img = OriImages->GetBitmap(imgid).ConvertToImage();
 		wxImage cp;
+		//Because an angle is reverse, warn the direction of 
+		// a rotation of wxImage and the rotation of wxpdfdoc.
 		switch (event.GetId()) {
 		case edpdf_em_rotleft:
 			cp = img.Rotate90(false);
@@ -420,8 +408,12 @@ void EDFrame::editMenu_Rotate_clicked(wxCommandEvent &event)
 		//change DB
 		GetPageNumber(label,&page,&src_page);
 		db_pdfpage db = newdocDB.GetPage(page-1);
-		db.SetRotate(true);
-		db.SetRotateAngle(angle);
+		db.SetRotateAngle(db.GetRotateAngle()+angle);
+		if (db.GetRotateAngle() == 0.0) {
+			db.SetRotate(false);
+		}else{
+			db.SetRotate(true);
+		}
 		newdocDB.SetPage(db,page-1);
 		//change view
 		int newindex = OriImages->Add(wxBitmap(cp));
@@ -787,6 +779,8 @@ int EDFrame::OpenPDF(const wxString &name, const wxString &pass)
 		srcpdfpass = pass;
 		pdf->GetSourceInfo(srcpdfinfo);
 		pdf->GetSourceInfo(newpdfinfo);
+		//get source pdf information
+		PrepareSourcePDF(name,pass);
 		//option: Use real thumbnails
 		if (wxGetApp().GetConfig().GetUseThumbnail()) {
 			OriImages->RemoveAll();
@@ -805,6 +799,10 @@ int EDFrame::OpenPDF(const wxString &name, const wxString &pass)
 }
 int EDFrame::SavePDF(const wxString &name)
 {
+	wxLogNull logNo;
+	//wxLogWindow *log_dialog;
+	//log_dialog = new wxLogWindow(this,_("log list"),false,false);
+	//wxLog::SetActiveTarget(log_dialog);
 	int cnt = (int)newdocDB.GetPagesCount();
 	int tpl;
 	double pwid, phei;
@@ -845,15 +843,16 @@ int EDFrame::SavePDF(const wxString &name)
 					if (page.GetRotateAngle() != 180.0) {
 						pageorient = wxPORTRAIT;
 					}else{
-						pdf->AddPage(wxLANDSCAPE);
+						//pdf->AddPage(wxLANDSCAPE);
+						pageorient = wxLANDSCAPE;
 					}
 				}
 			}else{
 				pageorient = wxGetApp().GetConfig().GetDefaultPageOrientation();
 			}
-			pdf->AddPage(pageorient);
-			pwid = pdf->GetPageWidth();
-			phei = pdf->GetPageHeight();
+			pdf->AddPage(pageorient,page.GetPaperSize());
+			pwid = page.GetPageWidth();
+			phei = page.GetPageHeight();
 			//pdf->SetDrawColor(0);
 			pdf->StartTransform();
 			double xdiv = 0, ydiv = 0;
@@ -876,17 +875,17 @@ int EDFrame::SavePDF(const wxString &name)
 			//option: Default page orientation
 			switch (wxGetApp().GetConfig().GetDefaultPageOrientation()) {
 			case wxAUTOORIENT:
-				pdf->AddPage(page.GetOrientation());
+				pdf->AddPage(page.GetOrientation(),page.GetPaperSize());
 				break;
 			case wxPORTRAIT:	
-				pdf->AddPage(wxPORTRAIT);
+				pdf->AddPage(wxPORTRAIT,page.GetPaperSize());
 				break;
 			case wxLANDSCAPE:	
-				pdf->AddPage(wxLANDSCAPE);
+				pdf->AddPage(wxLANDSCAPE,page.GetPaperSize());
 				break;
 			}
-			pwid = pdf->GetPageWidth();
-			phei = pdf->GetPageHeight();
+			pwid = page.GetPageWidth();
+			phei = page.GetPageHeight();
 			//option: Positionning of page -> Position
 			switch (wxGetApp().GetConfig().GetPagePosition()) {
 			case lefttop_psp:
@@ -1105,15 +1104,19 @@ void EDFrame::AppendNewPage(const wxString &label, wxTreeItemId id, int pos)
 	long tmp;
 	double x, y, w, h;
 	wxString tmptoken = label;
+	//get page number from selected page label
 	tmptoken = tmptoken.RemoveLast();
 	tmptoken.ToLong(&tmp);
-	page.SetSourcePage(tmp);
+	//create db_pdfpage object
+	/*page.SetSourcePage(tmp);
 	pdf->GetTemplateBBox(tmp,x, y, w,h);
 	if (w > h) {
 		page.SetOrientation(wxLANDSCAPE);
 	}else{
 		page.SetOrientation(wxPORTRAIT);
-	}
+	}*/
+	page = srcdocDB.GetPage(tmp-1);
+	//add in new pdf and control
 	if (pos < 0) {
 		//add DB
 		int p = newdocDB.AddPage(page);
@@ -1143,6 +1146,55 @@ void EDFrame::SetListInformation(const wxString &name, int num, wxPdfInfo &info)
 		ed_NewDocumentInfo->SetItem(4,1,info.GetAuthor());
 		ed_NewDocumentInfo->SetItem(5,1,info.GetKeywords());
 	}
+}
+void EDFrame::PrepareSourcePDF(const wxString &name, const wxString &pass)
+{
+	wxPopplerConvPPM *popp = new wxPopplerConvPPM();
+	popp->SetTargetFile(name);
+	popp->SetFileRootName(BINTITLE);
+	popp->SetOutputDir(wxGetApp().GetAppPath().GetTempDir());
+	popp->SetOwnerPassword(pass);
+	popp->SetUserPassword(pass);
+	popp->SetPageTotal(srcpdfnum);
+	popp->SetResolution(Resolution);
+	if (popp->Prepare()) {
+		for (int i = 1; i <= srcpdfnum; i++) {
+			db_pdfpage page;
+			//set rotation
+			page.SetRotateAngle((double)popp->GetRotatedValue(i));
+			page.SetPageHeight((int)popp->GetPageHeight(i));
+			page.SetPageWidth((int)popp->GetPageWidth(i));
+			if (page.GetPageHeight() > page.GetPageWidth()) {
+				page.SetOrientation(wxPORTRAIT);
+			}else{
+				page.SetOrientation(wxLANDSCAPE);
+			}
+			page.SetPaperSize(popp->GetPagePaperSize(i));
+			//set rotation flag by rotated angle
+			if (page.GetRotateAngle() == 90.0) {
+				page.SetRotate(true);
+			}else if (page.GetRotateAngle() == 180.0) {
+				page.SetRotate(false);
+			}else if (page.GetRotateAngle() == 270.0) {
+				page.SetRotate(true);
+				page.SetRotateAngle(page.GetRotateAngle()-180.0);
+			}else if (page.GetRotateAngle() == 360.0) {
+				page.SetRotate(false);
+			}else{
+				page.SetRotate(false);
+			}
+			/*if (page.IsRotate()) {
+				if (page.GetOrientation() == wxPORTRAIT) {
+					page.SetOrientation(wxLANDSCAPE);
+				}else{
+					page.SetOrientation(wxPORTRAIT);
+				}
+			}*/
+			page.SetSourcePage(i);
+			srcdocDB.AddPage(page);
+		}
+	}
+	delete popp;
 }
 
 bool DDText::OnDropText(wxCoord x, wxCoord y, const wxString& data)
