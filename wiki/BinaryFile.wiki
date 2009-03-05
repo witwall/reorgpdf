@@ -8,10 +8,10 @@
 
 ==Linux==
  * ubuntu 8.04
-[http://cid-80c55e9b203c084c.skydrive.live.com/self.aspx/Application/8.04%7C_hardy/reorgpdf%7C_0.7-1%7C_i386.deb]
+[http://cid-80c55e9b203c084c.skydrive.live.com/self.aspx/Application/8.04%7C_hardy/reorgpdf%7C_0.7-1%7C_i386.deb reorgpdf_0.7-1_i386.deb]
 
-[http://cid-80c55e9b203c084c.skydrive.live.com/self.aspx/Application/8.04%7C_hardy/reorgpdf%7C_0.7.1-1%7C_i386.deb]
+[http://cid-80c55e9b203c084c.skydrive.live.com/self.aspx/Application/8.04%7C_hardy/reorgpdf%7C_0.7.1-1%7C_i386.deb reorgpdf_0.7.1-1_i386.deb]
 
  * ubuntu 8.10
 
-[http://cid-80c55e9b203c084c.skydrive.live.com/self.aspx/Application/8.10%7C_intrepid/reorgpdf%7C_0.7.1-1%7C_i386.deb]
+[http://cid-80c55e9b203c084c.skydrive.live.com/self.aspx/Application/8.10%7C_intrepid/reorgpdf%7C_0.7.1-1%7C_i386.deb reorgpdf_0.7.1-1_i386.deb]
