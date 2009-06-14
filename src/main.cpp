@@ -112,7 +112,23 @@ EDFrame::EDFrame(const wxString &title)
 	ed_MenuBar->Enable(edpdf_fm_save,false);
 	ed_MenuBar->Enable(edpdf_fm_saveas,false);
 
-	
+	//---Create Tool bar
+	ed_ToolBar = CreateToolBar();
+	ed_ToolBar->AddTool( edpdf_fm_new, _("New"), wxGetApp().sysicoList->GetBitmap(0), wxNullBitmap, wxITEM_NORMAL,_("New"));
+	ed_ToolBar->AddTool( edpdf_fm_open, _("Open"), wxGetApp().sysicoList->GetBitmap(1), wxNullBitmap, wxITEM_NORMAL,_("Open"));
+	ed_ToolBar->AddTool( edpdf_fm_save, _("Save"), wxGetApp().sysicoList->GetBitmap(2), wxNullBitmap, wxITEM_NORMAL,_("Save"));
+	ed_ToolBar->AddTool( edpdf_fm_saveas, _("Save as"), wxGetApp().sysicoList->GetBitmap(3), wxNullBitmap, wxITEM_NORMAL,_("Save as"));
+	ed_ToolBar->AddSeparator();
+	ed_ToolBar->AddTool( edpdf_em_rotleft, _("To left 90"), wxGetApp().sysicoList->GetBitmap(4), wxNullBitmap, wxITEM_NORMAL,_("To left 90"));
+	ed_ToolBar->AddTool( edpdf_em_rotright, _("To right 90"), wxGetApp().sysicoList->GetBitmap(4), wxNullBitmap, wxITEM_NORMAL,_("To right 90"));
+	ed_ToolBar->AddTool( edpdf_em_inslast, _("Insert to new document"), wxGetApp().sysicoList->GetBitmap(5), wxNullBitmap, wxITEM_NORMAL,_("Insert to new document"));
+	ed_ToolBar->AddTool( edpdf_em_delete, _("Delete"), wxGetApp().sysicoList->GetBitmap(6), wxNullBitmap, wxITEM_NORMAL,_("Delete"));
+	ed_ToolBar->AddSeparator();
+	ed_ToolBar->AddTool( edpdf_origetthumb, _("Get thumbnail"), wxGetApp().sysicoList->GetBitmap(7), wxNullBitmap, wxITEM_NORMAL,_("Get thumbnail"));
+	ed_ToolBar->AddTool( edpdf_tm_setting, _("Setting"), wxGetApp().sysicoList->GetBitmap(8), wxNullBitmap, wxITEM_NORMAL,_("Setting"));
+	ed_ToolBar->Realize();
+
+	//---Create Status bar
 	ed_StatusBar = CreateStatusBar();
 	
 	//OriImages = new wxImageList(120,120,true);
@@ -336,9 +352,6 @@ void EDFrame::editMenu_Paste_clicked(wxCommandEvent &event)
 }
 void EDFrame::editMenu_Delete_clicked(wxCommandEvent &event)
 {
-	if (this->FindFocus()->GetId() != edpdf_newlist) {
-		return;
-	}
 	int ans = wxMessageBox(_("Do you really remove this page?"),APPTITLE,wxYES_NO|wxICON_QUESTION,this);
 	if (ans == wxYES) {
 		wxString label;
@@ -520,6 +533,9 @@ void EDFrame::toolMenu_Setting_clicked(wxCommandEvent &event)
 	setdlg->BindData_Setting(wxGetApp().GetConfig());
 	if (setdlg->ShowModal() == wxID_OK) {
 		wxGetApp().SetConfig(setdlg->GetData_Setting());
+		//---change state of controls
+		ed_ToolBar->EnableTool(edpdf_origetthumb,!wxGetApp().GetConfig().GetUseThumbnail());
+
 	}
 }
 void EDFrame::helpMenu_About_clicked(wxCommandEvent &event)
@@ -683,6 +699,12 @@ void EDFrame::ed_AnyThumbnails_selected(wxTreeEvent &event)
 	}
 	ed_MenuBar->Enable(edpdf_em_inslast,flag[1]);
 	ed_MenuBar->Enable(edpdf_em_insspec,flag[1]);
+	//---Tool bar
+	ed_ToolBar->EnableTool(edpdf_em_delete,flag[0]);
+	ed_ToolBar->EnableTool(edpdf_em_rotleft,flag[0]);
+	ed_ToolBar->EnableTool(edpdf_em_rotright,flag[0]);
+	ed_ToolBar->EnableTool(edpdf_em_inslast,flag[1]);
+
 	//if focus && not root select
 	wxArrayTreeItemIds arr;
 	if (tree->GetSelections(arr) > 0) {

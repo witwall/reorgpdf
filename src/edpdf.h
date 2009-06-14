@@ -45,6 +45,7 @@ public:
 protected:
 	wxMenuBar *ed_MenuBar;
 	wxSplitterWindow *ed_SplitWin;
+	wxToolBar *ed_ToolBar;
 	wxStatusBar *ed_StatusBar;
 	
 	wxPanel *ed_LeftPanel;
@@ -80,6 +81,7 @@ protected:
 	void ed_AnyThumbnails_selected(wxTreeEvent &event);
 	void ed_NewDocumentInfo_dblclicked(wxListEvent &event);
 	void ed_NewDocMenu_UseInfo_clicked(wxCommandEvent &event);
+
 private:
 	DECLARE_EVENT_TABLE()
 	enum Evcode {
@@ -111,7 +113,8 @@ private:
 		edpdf_newinfo,
 		edpdf_useinfo,
 		edpdf_origetthumb,
-		edpdf_oriinsnew
+		edpdf_oriinsnew,
+		edpdf_tl_rotate
 	};
 	wxImageList *OriImages;
 	wxTreeItemId OriDragItem;

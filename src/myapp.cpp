@@ -42,6 +42,19 @@ bool edpdfApp::OnInit()
 	pathstr.Add(BINTITLE);
 	pathstr.Add(_T("icon"));
 
+	//set system images
+	sysicoList = new wxImageList(32,32,true);
+	wxFileName sysicopath;
+	sysicopath.AssignDir(paths.GetResourcesDir());
+#ifdef __WXMSW__
+	sysicopath.AppendDir(wxGetApp().GetPathElement(P_SHARE));
+	sysicopath.AppendDir(wxGetApp().GetPathElement(P_APPNAME));
+#endif
+	sysicopath.AppendDir(wxGetApp().GetPathElement(P_ICON));
+
+	sysicopath.SetFullName(APPSYSICONS);
+	LoadIconImage(sysicopath.GetFullPath(),sysicoList,32,32);
+
 	//read initial setting file
 	wxString filename = StrF(_T("%s.ini"),APPTITLE);
 	wxFileName fullpath(paths.GetUserDataDir(),filename);
@@ -139,4 +152,35 @@ void edpdfApp::SaveIni(void)
 	
 	config->Save(fos);
 	delete config;
+}
+void edpdfApp::LoadIconImage(const wxString &path, wxImageList *list, int ws, int hs)
+{
+	if (!wxFileName::FileExists(path)) {
+		return;
+	}
+	const int ICODEFSIZE = 32;
+	wxImage allimage;
+	allimage.LoadFile(path,wxBITMAP_TYPE_PNG);
+	wxRect rect;
+	rect.SetWidth(ICODEFSIZE);
+	rect.SetHeight(ICODEFSIZE);
+	rect.SetX(0);
+	rect.SetY(0);
+	int wcnt = allimage.GetWidth() / ICODEFSIZE;
+	int hcnt = allimage.GetHeight() / ICODEFSIZE;
+	list->RemoveAll();
+	for (int h = 0; h < hcnt; h++) {
+		for (int w = 0; w < wcnt; w++) {
+			wxImage img = allimage.GetSubImage(rect);
+			wxBitmap bmp;
+			if (ws == ICODEFSIZE) {
+				bmp = wxBitmap(img);
+			}else{
+				bmp = wxBitmap(img.Rescale(ws,hs));
+			}
+			list->Add(bmp);
+			rect.SetX(rect.GetX()+rect.GetWidth());
+		}
+		rect.SetY(rect.GetY()+rect.GetHeight());
+	}
 }

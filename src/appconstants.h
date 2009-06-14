@@ -6,11 +6,13 @@
 
 #define BINTITLE _T("reorgpdf")
 
-#define APPVER _T("0.7.1")
+#define APPVER _T("0.8.0")
 
 #define CREATOR _T("ISHII Eiju")
 
 #define EMAIL _T("lumidina@gmail.com")
+
+#define APPSYSICONS _T("reorgpdficons.png")
 
 #define StrF wxString::Format
 
